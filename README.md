@@ -135,4 +135,4 @@ Found a bug or have a feature request? Please [open an issue](https://github.com
 
 ## License
 
-Fermi is released under the [MIT License](./LICENSE.md).
+Fermi is released under the [MIT License](LICENSE).
