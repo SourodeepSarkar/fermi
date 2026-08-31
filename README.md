@@ -25,9 +25,11 @@ This repository hosts **pre-built releases of the Fermi.app** you can download a
 
 **Highlights**
 
-- 🧠 Real-time streaming answers from Google's Gemini models, with rigorous derivations and LaTeX rendered cleanly in the terminal.
+- 🧠 **Adaptive answers.** Fermi sizes its response to the question — a quick concept check gets a few sentences, a genuinely hard derivation gets the full step-by-step treatment. It doesn't pad every reply with boilerplate code or unrelated sections.
+- 🛠️ **Real tool use, not homework for you.** When a number needs computing or a fact needs verifying, Fermi runs Google's code-execution and web-search tools itself and reports the result, instead of just handing you a script to run.
 - 📎 Attach PDFs, images, problem sets, or entire code directories for context-aware help.
-- 💬 Persistent, named study sessions that survive terminal restarts.
+- 💬 Multiple persistent, named study sessions — switch, create, or export them from inside the app.
+- ⚙️ Pick your model (`flash` for speed, `pro` for harder problems) and temperature on the fly.
 - ⚡️ A guided, macOS-native setup — no manual `pip install`, no editing config files by hand.
 - 🔒 Your API key is stored locally in a `.env` file on your own Mac. It is never sent anywhere except Google's API.
 
@@ -73,14 +75,31 @@ Every launch after that skips straight to a loading screen, silently checks for 
 
 ## Using Fermi
 
-Once set up, Fermi opens a Terminal window running its CLI. A few commands to know:
+Once set up, Fermi opens a Terminal window running its CLI. Just ask a question — Fermi decides on its own how much depth the answer needs, and quietly runs a calculation or a web lookup itself when one would actually help, rather than dumping code on you.
+
+Commands to know (type `/help` any time to see this list in-app):
 
 | Command | Description |
 |---|---|
 | `/attach <file_path>` | Queue a file (PDF, image, data file) to send with your next message. |
 | `/dir <dir_path>` | Queue an entire directory to index into context with your next message. |
+| `/clear` | Clear a queued attachment/directory before sending. |
+| `/paste` | Enter multi-line input for a long problem statement; finish with a line containing only `/end`. |
 | `/copy` | Copy the last response to your clipboard as raw Markdown. |
-| `exit` / `quit` | Save your session and close. |
+| `/retry` | Resend your last message (e.g. after switching model or tools). |
+| `/history` | Show this session's conversation so far. |
+| `/export [path]` | Export this session to a Markdown file. |
+| `/sessions` | List all saved sessions. |
+| `/switch <name>` | Switch to (or create) another session. |
+| `/new <name>` | Start a brand-new session. |
+| `/model <flash\|pro>` | Switch between the fast and the deep-reasoning model. |
+| `/temp <0.0–1.0>` | Set generation temperature. |
+| `/tools` | Show or toggle Fermi's web search / code execution tools. |
+| `/persona <text>` | Add a standing instruction for this session (e.g. "focus on E&M", "always show units"). |
+| `/help` | Show the command list. |
+| `/quit`, `/exit` | Save your session and close. |
+
+Your chosen model, temperature, and tool settings are remembered between launches in a small `config.json` file next to the app data — no need to reconfigure every time.
 
 If you enabled **Command Line Access** during setup, you can also start Fermi any time from any Terminal window by typing:
 
